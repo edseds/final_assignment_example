@@ -30,3 +30,11 @@
 - name: Install Docker Module for Python
   pip:
     name: docker
+
+- name: Download Docker Compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64"
+    dest: "/usr/local/bin/docker-compose"
+    mode: '0755'
+  vars:
+    docker_compose_version: '1.29.2'
