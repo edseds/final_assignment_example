@@ -1,5 +1,5 @@
 - name: Clone repository using HTTPS
   git:
-    repo: https://github.com/username/repository.git
-    dest: /path/to/destination/folder
-    version: main  # or any specific branch, tag, or commit hash
+    repo: https://github.com/edseds/final_assignment_example.git
+    dest: /home/ubuntu/final_assignment_example
+    version: main
