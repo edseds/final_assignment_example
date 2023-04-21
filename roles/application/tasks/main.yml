@@ -1,0 +1,14 @@
+- name: Create New Folder
+  file:
+    path: /home/ansible_git_clone/application
+    state: directory
+    mode: 700 #the permission directory will have, 700 will give read, write, and execute permissions for the user only
+    owner: diana_pavulane #name of the user that should own the object
+    group: diana_pavulane #name of the group that should own the directory
+
+- name: Clone a github repository
+  git:
+    repo: https://github.com/SDaiva/Final_assignment_Team2
+    dest: /home/ansible_git_clone/application
+    clone: yes
+    update: yes
