@@ -3,6 +3,9 @@ user_name: final_user
 ssh_key_path: /Users/edgarscirulis/Devops/final_assignment_terraform_demo/ssh/aws_my_key.pub
 ssh_private_key_name: "aws_my_key"
 ssh_private_key_path: "/Users/edgarscirulis/Devops/final_assignment_terraform_demo/ssh/{{ ssh_private_key_name }}"
+python_public_key: /Users/edgarscirulis/Devops/final_assignment_terraform_demo/ssh/python_key.pub
+python_private_key_name: "python_key"
+python_ssh_private_key_path: "/Users/edgarscirulis/Devops/final_assignment_terraform_demo/ssh/{{ python_private_key_name }}"
 base_directory: "/home/{{ user_name }}/final_assignment_example"
 docker_compose_directory: "{{ base_directory }}/docker"
 become_user_name: root
@@ -12,6 +15,7 @@ mysql_root_password: qwerty
 mysql_db_name: db
 backup_file_path: "{{ docker_compose_directory }}/backup.sql"
 git_repo_url: git@github.com:edseds/final_assignment_example.git
+git_repo_python_url: git@github.com:edseds/final_assignment_example_python.git
 git_clone_destination: "{{ base_directory }}"
 docker_compose_version: '1.29.2'
 python_app: "{{ docker_compose_directory }}/python_app"

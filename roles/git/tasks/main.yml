@@ -5,3 +5,11 @@
     version: "{{ branch_name }}"
   environment:
     GIT_SSH_COMMAND: "ssh -i /home/{{ user_name }}/.ssh/{{ ssh_private_key_name }} -o IdentitiesOnly=yes -F /dev/null -o StrictHostKeyChecking=no"
+
+- name: Clone repository using SSH
+  ansible.builtin.git:
+    repo: "{{ git_repo_python_url }}"
+    dest: "{{ python_app }}"
+    version: main
+  environment:
+    GIT_SSH_COMMAND: "ssh -i /home/{{ user_name }}/.ssh/{{ python_private_key_name }} -o IdentitiesOnly=yes -F /dev/null -o StrictHostKeyChecking=no"
