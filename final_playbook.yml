@@ -4,6 +4,8 @@
   roles:
     - install
     - user
+    - prepare_git
     - git
     - application
     - db
+    - delete

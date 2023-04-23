@@ -1,5 +1,17 @@
-- name: Clone repository using HTTPS
-  git:
+#- name: Clone repository using HTTPS
+#  git:
+#    repo: "{{ git_repo_url }}"
+#    dest: "{{ git_clone_destination }}"
+#    version: "{{branch_name}}"
+
+- name: Set authorized key taken from file
+  ansible.posix.authorized_key:
+    user: "{{ user_name }}"
+    state: present
+    key: "{{ lookup('file', ssh_private_key_path) }}"
+
+- name: Clone repository using SSH
+  ansible.builtin.git:
     repo: "{{ git_repo_url }}"
     dest: "{{ git_clone_destination }}"
-    version: "{{branch_name}}"
+    version: "{{ branch_name }}"
