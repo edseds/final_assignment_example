@@ -6,15 +6,14 @@
     group: "{{ user_name }}"
     mode: '0600'
 
-- name: Add private key to SSH agent
-  ansible.builtin.shell: |
-    eval $(ssh-agent)
-    ssh-add /home/{{ user_name }}/.ssh/{{ ssh_private_key_name }}
-  args:
-    executable: /bin/bash
-
-- name: Add Git server's public key to known_hosts
-  ansible.builtin.known_hosts:
-    name: github.com
-    key: "{{ lookup('url', 'https://github.com/ssh/keys', wantlist=True) }}"
+- name: Set authorized key taken from file
+  ansible.builtin.authorized_key:
+    user: "{{ user_name }}"
     state: present
+    key: "{{ lookup('file', ssh_key_path) }}"
+
+#- name: Add Git server's public key to known_hosts
+#  ansible.builtin.shell: |
+#    ssh-keyscan -H github.com >> /home/{{ user_name }}/.ssh/known_hosts
+#  args:
+#    executable: /bin/bash
