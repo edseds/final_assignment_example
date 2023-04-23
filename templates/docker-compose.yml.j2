@@ -8,8 +8,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: {{ mysql_root_password }}
       MYSQL_DATABASE: {{ mysql_db_name }}
-      MYSQL_USER: {{ mysql_db_user }}
-      MYSQL_PASSWORD: {{ mysql_db_password }}
     ports:
       - '3308:3306'
     volumes:
@@ -17,7 +15,7 @@ services:
     networks:
       mysql-network:
         aliases:
-          - mysql
+          - {{ mysql_alias }}
 
   app:
     build: .

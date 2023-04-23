@@ -2,4 +2,4 @@
   git:
     repo: "{{ git_repo_url }}"
     dest: "{{ git_clone_destination }}"
-    version: main
+    version: "{{branch_name}}"

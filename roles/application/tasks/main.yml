@@ -14,7 +14,7 @@
   ansible.builtin.lineinfile:
     path: "{{ env_file_path }}"
     regexp: '^DB_HOST='
-    line: "DB_HOST={{ db_host }}"
+    line: "DB_HOST={{ mysql_alias }}"
 
 - name: Update DB_NAME in environment file
   ansible.builtin.lineinfile:
@@ -24,12 +24,12 @@
 
 - name: Generate Docker Compose file
   ansible.builtin.template:
-    src: "{{ docker_compose_directory }}/docker-compose.yml.j2"
+    src: docker-compose.yml.j2
     dest: "{{ docker_compose_directory }}/docker-compose.yml"
 
 - name: Generate app.py file
   ansible.builtin.template:
-    src: "{{ python_app }}/app.py.j2"
+    src: app.py.j2
     dest: "{{ python_app }}/app.py"
 
 - name: Run Docker Compose in a specific directory
