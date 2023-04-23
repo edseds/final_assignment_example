@@ -1,5 +1,5 @@
 - name: Clone repository using HTTPS
   git:
-    repo: https://github.com/edseds/final_assignment_example.git
-    dest: /home/ubuntu/final_assignment_example
+    repo: "{{ git_repo_url }}"
+    dest: "{{ git_clone_destination }}"
     version: main

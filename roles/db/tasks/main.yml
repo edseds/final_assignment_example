@@ -7,9 +7,9 @@
 
 
 - name: Copy backup.sql from host to MySQL container
-  command: docker cp /home/ubuntu/final_assignment_example/docker/backup.sql mysql_final:/tmp/backup.sql
+  command: docker cp "{{ backup_file_path }}" "{{ mysql_container_name }}:{{ mysql_container_temp_path }}"
 
 - name: Import backup.sql into MySQL container
-  shell: docker exec -i mysql_final bash -c 'cat /tmp/backup.sql | mysql -u root -pqwerty db'
+  shell: docker exec -i "{{ mysql_container_name }}" bash -c 'cat {{ mysql_container_temp_path }} | mysql -u root -p{{ mysql_root_password }} {{ mysql_db_name }}'
   args:
     executable: /bin/bash

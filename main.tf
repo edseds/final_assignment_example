@@ -17,12 +17,12 @@ resource "aws_security_group" "final_assignment_security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  ingress {
+  /*ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-  }
+  }*/
 
   ingress {
     from_port   = 8000
@@ -49,7 +49,7 @@ resource "aws_instance" "final_assignment" {
   vpc_security_group_ids = [aws_security_group.final_assignment_security_group.id]
 
   provisioner "local-exec" {
-    command = "sleep 60 && ansible-playbook -i '${aws_instance.final_assignment.public_ip},' -e ip_address=${aws_instance.final_assignment.public_ip} final_playbook.yml --user ${var.aws_instance_user_id} --private-key ${var.private_key_path}"
+    command = "sleep 60 && ansible-playbook -i '${aws_instance.final_assignment.public_ip},' -e ip_address=${aws_instance.final_assignment.public_ip} final_playbook.yml --user ${var.aws_instance_user_id} --private-key ${var.private_key_path} --vault-password-file vault_password.txt"
   }
 
 }

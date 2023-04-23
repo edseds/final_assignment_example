@@ -3,6 +3,7 @@
   become: true
   roles:
     - install
+    - user
     - git
     - application
     - db
